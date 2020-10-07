@@ -1,5 +1,6 @@
 ﻿using System;
 using Behavioural.Memento;
+using Behavioural.State;
 
 namespace Behavioural
 {
@@ -7,17 +8,15 @@ namespace Behavioural
     {
         static void Main(string[] args)
         {
-            var editor = new Editor();
-            var history = new History();
-
-            editor.Content = "a";
-            history.Push(editor.CreateState());
-            editor.Content = "b";
-            history.Push(editor.CreateState());
-            editor.Content = "c";
-            editor.Restore(history.Pop());
-
-            Console.WriteLine(editor.Content);
+            var canvas = new Canvas();
+            canvas.CurrentTool = new SelectionTool();
+            canvas.MouseDown();
+            canvas.MouseUp();
+            
+            canvas.CurrentTool = new BrushTool();
+            
+            canvas.MouseDown();
+            canvas.MouseUp();
         }
     }
 }
