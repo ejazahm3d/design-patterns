@@ -8,8 +8,16 @@ namespace Behavioural
         static void Main(string[] args)
         {
             var editor = new Editor();
-            editor.Content = "Hello World";
-            editor.Content = "No world";
+            var history = new History();
+
+            editor.Content = "a";
+            history.Push(editor.CreateState());
+            editor.Content = "b";
+            history.Push(editor.CreateState());
+            editor.Content = "c";
+            editor.Restore(history.Pop());
+
+            Console.WriteLine(editor.Content);
         }
     }
 }
