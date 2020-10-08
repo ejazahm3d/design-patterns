@@ -1,5 +1,6 @@
 ﻿using System;
 using Behavioural.Command.Editor;
+using Behavioural.Observer;
 
 namespace Behavioural
 {
@@ -7,17 +8,17 @@ namespace Behavioural
     {
         static void Main(string[] args)
         {    
-            var history = new History();
-            var document = new HtmlDocument {Content = "Hello World"};
-            var boldCommand = new BoldCommand(document, history);
-            boldCommand.Execute();
+          var dataSource = new DataSource();
+          var sheet1 = new SpreadSheet();
+          var sheet2 = new SpreadSheet();
+          var chart = new Chart();
+          
+          dataSource.AddObserver(sheet1);
+          dataSource.AddObserver(sheet2);
+          dataSource.AddObserver(chart);
 
-            Console.WriteLine(document.Content);
-            var undoCommand = new UndoCommand(history);
-            
-            undoCommand.Execute();
-
-            Console.WriteLine(document.Content);
+          dataSource.Val = 2;
+          
         }
     }
 }
