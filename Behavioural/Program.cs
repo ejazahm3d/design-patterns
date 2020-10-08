@@ -1,19 +1,23 @@
 ﻿using System;
-using Behavioural.Iterator;
-using Behavioural.Memento;
-using Behavioural.State;
-using Behavioural.Strategy;
-using Behavioural.Template;
-using static System.Console;
+using Behavioural.Command.Editor;
 
 namespace Behavioural
 {
     class Program
     {
         static void Main(string[] args)
-        {
-          var transferMoney = new TransferForMoneyTask(new AuditTrail());
-          transferMoney.Execute();
+        {    
+            var history = new History();
+            var document = new HtmlDocument {Content = "Hello World"};
+            var boldCommand = new BoldCommand(document, history);
+            boldCommand.Execute();
+
+            Console.WriteLine(document.Content);
+            var undoCommand = new UndoCommand(history);
+            
+            undoCommand.Execute();
+
+            Console.WriteLine(document.Content);
         }
     }
 }
