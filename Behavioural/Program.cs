@@ -2,6 +2,7 @@
 using Behavioural.Iterator;
 using Behavioural.Memento;
 using Behavioural.State;
+using Behavioural.Strategy;
 using static System.Console;
 
 namespace Behavioural
@@ -10,19 +11,10 @@ namespace Behavioural
     {
         static void Main(string[] args)
         {
-            var browserHistory = new BrowserHistory();
-            browserHistory.Push("a");
-            browserHistory.Push("b");
-            browserHistory.Push("c");
-            browserHistory.Push("d");
-
-            var iterator = browserHistory.CreateIterator();
-            while (iterator.HasNext())
-            {
-                var url = iterator.Current();
-                WriteLine(url);
-                iterator.Next();
-            }
+           var imageStore = new ImageStorage(new JpegCompressor(), new BlackAndWhiteFilter());
+           
+           imageStore.Store("Hello World");
+           
         }
     }
 }
