@@ -3,6 +3,7 @@ using Behavioural.Iterator;
 using Behavioural.Memento;
 using Behavioural.State;
 using Behavioural.Strategy;
+using Behavioural.Template;
 using static System.Console;
 
 namespace Behavioural
@@ -11,10 +12,8 @@ namespace Behavioural
     {
         static void Main(string[] args)
         {
-           var imageStore = new ImageStorage(new JpegCompressor(), new BlackAndWhiteFilter());
-           
-           imageStore.Store("Hello World");
-           
+          var transferMoney = new TransferForMoneyTask(new AuditTrail());
+          transferMoney.Execute();
         }
     }
 }
