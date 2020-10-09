@@ -1,8 +1,5 @@
-﻿using System;
-using Behavioural.ChainOfResponsibility;
-using Behavioural.Command.Editor;
-using Behavioural.Mediator;
-using Behavioural.Observer;
+﻿
+using Behavioural.Visitor;
 
 namespace Behavioural
 {
@@ -10,11 +7,10 @@ namespace Behavioural
     {
         static void Main(string[] args)
         {    
-          var compressor = new Compressor(null);
-          var logger = new Logger(compressor);
-          var authenticator = new Authenticator(logger);
-          var webServer = new WebServer(authenticator);
-          webServer.Handle(new HttpRequest("test", "123"));
+            var document = new HtmlDocument();
+            document.Add(new HeadingNode());
+            document.Add(new AnchorNode());
+            document.Execute(new HighlightOperation());
         }
     }
 }
