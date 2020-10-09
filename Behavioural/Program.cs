@@ -1,5 +1,6 @@
 ﻿using System;
 using Behavioural.Command.Editor;
+using Behavioural.Mediator;
 using Behavioural.Observer;
 
 namespace Behavioural
@@ -8,17 +9,8 @@ namespace Behavioural
     {
         static void Main(string[] args)
         {    
-          var dataSource = new DataSource();
-          var sheet1 = new SpreadSheet();
-          var sheet2 = new SpreadSheet();
-          var chart = new Chart();
-          
-          dataSource.AddObserver(sheet1);
-          dataSource.AddObserver(sheet2);
-          dataSource.AddObserver(chart);
-
-          dataSource.Val = 2;
-          
+          var dialog = new ArticlesDialogBox();
+          dialog.SimulateUserInteraction();
         }
     }
 }
