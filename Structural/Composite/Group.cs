@@ -4,7 +4,7 @@ namespace Structural.Composite
 {
     public class Group
     {
-        private List<Shape> _shapes = new List<Shape>();
+        private readonly List<Shape> _shapes = new List<Shape>();
 
         public void Add(Shape shape)
         {
