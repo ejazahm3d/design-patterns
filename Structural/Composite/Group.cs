@@ -2,20 +2,20 @@ using System.Collections.Generic;
 
 namespace Structural.Composite
 {
-    public class Group
+    public class Group: IComponent
     {
-        private readonly List<Shape> _shapes = new List<Shape>();
+        private readonly List<IComponent> _components = new List<IComponent>();
 
-        public void Add(Shape shape)
+        public void Add(IComponent component)
         {
-            _shapes.Add(shape);
+            _components.Add(component);
         }
 
         public void Render()
         {
-            foreach (var shape in _shapes)
+            foreach (var component in _components)
             {
-                shape.Render();
+                component.Render();
             }
         }
     }
