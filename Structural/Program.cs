@@ -3,6 +3,7 @@ using Structural.Adapter;
 using Structural.Adapter.avaFilters;
 using Structural.Composite;
 using Structural.Decorator;
+using Structural.Facade;
 
 namespace Structural
 {
@@ -10,11 +11,8 @@ namespace Structural
     {
         static void Main(string[] args)
         {
-          var cloudStream = new CloudStream();
-          
-          var compressedAndEncrypted = new EncryptedCloudStream(new CompressedCloudStream(cloudStream));
-          
-          compressedAndEncrypted.Write("Teeeheeee");
+            var notificationService = new NotificationService();
+            notificationService.Send("Hello World", "target");
         }
     }
 }
