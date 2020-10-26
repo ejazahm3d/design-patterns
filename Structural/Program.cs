@@ -1,6 +1,7 @@
 ﻿using System;
 using Structural.Adapter;
 using Structural.Adapter.avaFilters;
+using Structural.Bridge;
 using Structural.Composite;
 using Structural.Decorator;
 using Structural.Facade;
@@ -12,9 +13,8 @@ namespace Structural
     {
         static void Main(string[] args)
         {
-          var pointService = new PointService(new PointIconFactory());
-
-          foreach (var point in pointService.GetPoints()) point.Draw();
+          var remoteControl = new AdvancedRemoteControl(new SamsungTV());
+          remoteControl.SetChannel();
         }
     }
 }
