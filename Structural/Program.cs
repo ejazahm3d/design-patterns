@@ -6,6 +6,7 @@ using Structural.Composite;
 using Structural.Decorator;
 using Structural.Facade;
 using Structural.Flyweight;
+using Structural.Proxy;
 
 namespace Structural
 {
@@ -13,8 +14,13 @@ namespace Structural
     {
         static void Main(string[] args)
         {
-          var remoteControl = new AdvancedRemoteControl(new SamsungTV());
-          remoteControl.SetChannel();
+         var library = new Library();
+         var fileNames = new string[]{"a", "b", "c"};
+
+         foreach (var fileName in fileNames) 
+             library.Add(new LoggingEbookProxy(fileName));
+         library.OpenEbook("a");
+         library.OpenEbook("b");
         }
     }
 }
